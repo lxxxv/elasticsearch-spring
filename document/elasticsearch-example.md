@@ -54,16 +54,17 @@ PUT my-index-000001
                 "my_custom_analyzer":
                 {
                     "type": "custom",
-                    "tokenizer": 
-                    {
-                        "nori_mixed": 
-                        {
-                            "type": "nori_tokenizer",
-                            "decompound_mode": "mixed"
-                        }
-                    },
+                    "tokenizer": "my_nori_tokenizer_mixed",
                     "char_filter": ["html_strip"],
                     "filter": ["lowercase"]
+                }
+            },
+            "tokenizer":
+            {
+                "my_nori_tokenizer_mixed":
+                {
+                    "type": "nori_tokenizer",
+                    "decompound_mode": "mixed"
                 }
             }
         }
