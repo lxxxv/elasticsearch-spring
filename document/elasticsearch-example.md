@@ -21,7 +21,7 @@ settings : https://www.elastic.co/guide/en/elasticsearch/reference/current/index
 
 
 _tag1 settings.analysis : https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html
-["analyzer"]
+["analyzer", "filter", "normalizer", "tokenizer"]
 
 
 settings.analysis.analyzer : https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-custom-analyzer.html
@@ -66,12 +66,41 @@ PUT my-index-000001
                     "type": "nori_tokenizer",
                     "decompound_mode": "mixed"
                 }
+            },
+            "filter": 
+            {
+                "engram_f": 
+                {
+                    "type": "edge_ngram",
+                    "min_gram": 2,
+                    "max_gram": 5
+                }
+            },
+            "normalizer": 
+            {
+                "norm_low": 
+                {
+                    "type": "custom",
+                    "filter": [ "lowercase", "asciifolding" ]
+                }
             }
         }
-    }
-    ,
+    },
     "mappings":
     {
+        "properties":
+        {
+            "body":
+            {
+                "type":"text",
+                "analyzer": "my_custom_analyzer"
+            },
+            "body_keyword":
+            {
+                "type":"keyword",
+                "normalizer": "norm_low"
+            }
+        }
     }
 }
 
