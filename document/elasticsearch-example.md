@@ -63,7 +63,7 @@ PUT my-index-000001
                         }
                     },
                     "char_filter": ["html_strip"],
-                    "filter": ["lowercase","asciifolding"]
+                    "filter": ["lowercase"]
                 }
             }
         }
