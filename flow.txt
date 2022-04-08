@@ -29,3 +29,6 @@ GET _analyze
     "동해물과 백두산이"
   ]
 }
+
+https://esbook.kimjmin.net/06-text-analysis/6.7-stemming/6.7.2-nori
+
