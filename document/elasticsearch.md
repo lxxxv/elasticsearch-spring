@@ -3,6 +3,69 @@ Configuring
 https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html
 
 
+Index APIs
+https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html
+    Index management
+        Create index
+            https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html
+            https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#index-modules-settings
+                https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html
+            https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
+                https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html
+                https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-params.html
+            https://www.elastic.co/guide/en/elasticsearch/reference/current/aliases.html
+        Delete index
+        Get index
+        Exists
+        Close index
+        Open index
+        Shrink index
+        Split index
+        Clone index
+        Rollover
+        Unfreeze index
+        Resolve index
+    Mapping management
+        Update mapping
+        Get mapping
+        Get field mapping
+        Analyze index disk usage
+    Alias management
+        Aliases
+        Create or update alias
+        Get alias
+        Alias exists
+        Delete alias
+    Index settings
+        Update index settings
+        Get index settings
+        Analyze
+    Index templates
+        Create or update index template
+        Get index template
+        Delete index template
+        Create or update component template
+        Get component template
+        Delete component template
+        Simulate index
+        Simulate template
+    Monitoring
+        Index stats
+        Field usage stats
+        Index segments
+        Index recovery
+        Index shard stores
+    Status management
+        Clear cache
+        Refresh
+        Flush
+        Force merge
+    Dangling indices
+        List dangling indices
+        Import dangling index
+        Delete dangling index
+
+
 Mapping
 https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
     Dynamic mapping
@@ -17,6 +80,23 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
 
 Text analysis
 https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html
+    Built-in analyzer reference
+        https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-analyzers.html
+        Standard Analyzer
+        Simple Analyzer
+        Whitespace Analyzer
+        Stop Analyzer
+        Keyword Analyzer
+        Pattern Analyzer
+        Language Analyzers
+        Fingerprint Analyzer
+    Create a custom analyzer
+        https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-custom-analyzer.html
+        type
+        tokenizer
+        char_filter
+        filter
+        position_increment_gap
     char filter (0~3)
         https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-charfilters.html
     tokenizer (1)
