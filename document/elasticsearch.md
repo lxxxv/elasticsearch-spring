@@ -2,6 +2,17 @@
 Configuring
 https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html
 
+Mapping
+https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
+    Dynamic mapping
+    Explicit mapping
+    Runtime fields
+    Field data types
+    Metadata fields
+    Mapping parameters
+    Mapping limit settings
+    Removal of mapping types
+
 Text analysis
 https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html
     char filter (0~3)
@@ -74,3 +85,36 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html
         word_delimiter
         word_delimiter_graph
 
+Query DSL
+https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html
+    Query and filter context
+    Compound queries
+    Full text queries
+        Intervals
+        Match
+        Match boolean prefix
+        Match phrase
+        Match phrase prefix
+        Combined fields
+        Multi-match
+        Query string
+        Simple query string
+    Geo queries
+    Shape queries
+    Joining queries
+    Match all
+    Span queries
+    Specialized queries
+    Term-level queries
+    minimum_should_match parameter
+    rewrite parameter
+    Regular expression syntax
+
+
+
+example group
+    index list (indices)
+        https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-indices.html#cat-indices-api-request
+        GET /_cat/indices
+    index detail info
+        GET /.apm-agent-configuration/_mapping
