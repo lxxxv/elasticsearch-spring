@@ -39,8 +39,8 @@ settings.analysis.analyzer : https://www.elastic.co/guide/en/elasticsearch/refer
         ["standard", "letter", "lowercase", "whitespace", "uax_url_email" "classic", "thai", "ngram", "edge_ngram", "keyword", "pattern", "simple_pattern", "char_group", "simple_pattern_split", "path_hierarchy"]
         settings.analysis.analyzer.{my_custom_analyzer}.char_filter : https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-charfilters.html
         ["html_strip", "mapping", "pattern_replace"]
-        settings.analysis.analyzer.{my_custom_analyzer}.filter : https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-stop-tokenfilter.html
-        ["lowercase", "stop", "my_custom_filter_name"]
+        settings.analysis.analyzer.{my_custom_analyzer}.filter : https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenfilters.html
+        ["apostrophe", "asciifolding", "cjk_bigram", "cjk_width", "classic", "common_grams", "condition", "decimal_digit", "delimited_payload", "dictionary_decompounder", "edge_ngram", "elision", "fingerprint", "synonym_graph", "hunspell", "hyphenation_decompounder", "keep_types", "keep", "stemmer", "keyword_repeat", "kstem", "length", "limit", "lowercase", "min_hash", "multiplexer", "ngram", "pattern_capture", "pattern_replace", "analysis-phonetic", "porter_stem", "predicate_token_filter", "keyword_repeat", "reverse", "shingle", "snowball", "stemmer", "stemmer_override", "stop", "synonym", "synonym_graph", "trim", "truncate", "unique", "uppercase", "word_delimiter", "word_delimiter_graph", "my_custom_filter_name"]
 
 
 PUT my-index-000001
@@ -54,7 +54,14 @@ PUT my-index-000001
                 "my_custom_analyzer":
                 {
                     "type": "custom",
-                    "tokenizer": "standard",
+                    "tokenizer": 
+                    {
+                        "nori_mixed": 
+                        {
+                            "type": "nori_tokenizer",
+                            "decompound_mode": "mixed"
+                        }
+                    },
                     "char_filter": ["html_strip"],
                     "filter": ["lowercase","asciifolding"]
                 }
