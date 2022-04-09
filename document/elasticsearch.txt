@@ -197,11 +197,11 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html
 Compact and aligned text (CAT) APIs
 https://www.elastic.co/guide/en/elasticsearch/reference/current/cat.html
     cat aliases
-        GET _cat/aliases?v=true&s=index
+        GET _cat/aliases?v=true&s=index&h=alias,index,filter,routing.index,routing.search,is_write_index
     cat allocation
     cat anomaly detectors
     cat count
-        GET /_cat/count?v=true&s=count
+        GET /_cat/count?v=true&s=count&h=epoch,timestamp,count
     cat data frame analytics
     cat datafeeds
     cat fielddata
@@ -221,9 +221,9 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/cat.html
     cat repositories
         GET /_cat/repositories?v=true
     cat segments
-        GET /_cat/segments?v=true&s=index
+        GET /_cat/segments?v=true&s=index&h=index,shard,prirep,ip,id,segment,generation,docs.count,docs.deleted,size,size.memory,committed,searchable,version,compound
     cat shards
-        GET /_cat/shards?v=true&s=index&h=index,shard,prirep,state,docs,store,ip,id,node,completion.size,fielddata.memory_size,fielddata.evictions,flush.total,flush.total_time,get.current,get.time,get.total,get.exists_time,get.exists_total,get.missing_time,get.missing_total,indexing.delete_current,indexing.delete_time,indexing.delete_total,indexing.index_current,indexing.index_time,indexing.index_total,indexing.index_failed,merges.current,merges.current_docs,merges.current_size,merges.total,merges.total_docs,merges.total_size,merges.total_time,query_cache.memory_size,query_cache.evictions,recoverysource.type,refresh.total,refresh.time,search.fetch_current,search.fetch_time,search.fetch_total,search.open_contexts,search.query_current,search.query_time,search.query_total,search.scroll_current,search.scroll_time,search.scroll_total,segments.count,segments.memory,segments.index_writer_memory,segments.version_map_memory,segments.fixed_bitset_memory,seq_no.global_checkpoint,seq_no.local_checkpoint,seq_no.max,suggest.current,suggest.time,suggest.total,sync_id,unassigned.at,unassigned.details,unassigned.for,unassigned.reason
+        GET /_cat/shards?v=true&s=index&h=index,shard,prirep,state,docs,store,ip,id,node,sync_id,unassigned.reason,unassigned.at,unassigned.for,unassigned.details,recoverysource.type,completion.size,fielddata.memory_size,fielddata.evictions,query_cache.memory_size,query_cache.evictions,flush.total,flush.total_time,get.current,get.time,get.total,get.exists_time,get.exists_total,get.missing_time,get.missing_total,indexing.delete_current,indexing.delete_time,indexing.delete_total,indexing.index_current,indexing.index_time,indexing.index_total,indexing.index_failed,merges.current,merges.current_docs,merges.current_size,merges.total,merges.total_docs,merges.total_size,merges.total_time,refresh.total,refresh.time,refresh.external_total,refresh.external_time,refresh.listeners,search.fetch_current,search.fetch_time,search.fetch_total,search.open_contexts,search.query_current,search.query_time,search.query_total,search.scroll_current,search.scroll_time,search.scroll_total,segments.count,segments.memory,segments.index_writer_memory,segments.version_map_memory,segments.fixed_bitset_memory,seq_no.max,seq_no.local_checkpoint,seq_no.global_checkpoint,warmer.current,warmer.total,warmer.total_time,path.data,path.state
     cat snapshots
     cat task management
         GET _cat/tasks?v=true
@@ -239,7 +239,7 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/cat.html
 example group
     index list (indices)
         https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-indices.html#cat-indices-api-request
-        GET /_cat/indices/_all?v=true&s=index
+        GET /_cat/indices/_all?v=true&s=index&h=health,status,index,uuid,pri,rep,docs.count,docs.deleted,creation.date,creation.date.string,store.size,pri.store.size,completion.size,pri.completion.size,fielddata.memory_size,pri.fielddata.memory_size,fielddata.evictions,pri.fielddata.evictions,query_cache.memory_size,pri.query_cache.memory_size,query_cache.evictions,pri.query_cache.evictions,request_cache.memory_size,pri.request_cache.memory_size,request_cache.evictions,pri.request_cache.evictions,request_cache.hit_count,pri.request_cache.hit_count,request_cache.miss_count,pri.request_cache.miss_count,flush.total,pri.flush.total,flush.total_time,pri.flush.total_time,get.current,pri.get.current,get.time,pri.get.time,get.total,pri.get.total,get.exists_time,pri.get.exists_time,get.exists_total,pri.get.exists_total,get.missing_time,pri.get.missing_time,get.missing_total,pri.get.missing_total,indexing.delete_current,pri.indexing.delete_current,indexing.delete_time,pri.indexing.delete_time,indexing.delete_total,pri.indexing.delete_total,indexing.index_current,pri.indexing.index_current,indexing.index_time,pri.indexing.index_time,indexing.index_total,pri.indexing.index_total,indexing.index_failed,pri.indexing.index_failed,merges.current,pri.merges.current,merges.current_docs,pri.merges.current_docs,merges.current_size,pri.merges.current_size,merges.total,pri.merges.total,merges.total_docs,pri.merges.total_docs,merges.total_size,pri.merges.total_size,merges.total_time,pri.merges.total_time,refresh.total,pri.refresh.total,refresh.time,pri.refresh.time,refresh.external_total,pri.refresh.external_total,refresh.external_time,pri.refresh.external_time,refresh.listeners,pri.refresh.listeners,search.fetch_current,pri.search.fetch_current,search.fetch_time,pri.search.fetch_time,search.fetch_total,pri.search.fetch_total,search.open_contexts,pri.search.open_contexts,search.query_current,pri.search.query_current,search.query_time,pri.search.query_time,search.query_total,pri.search.query_total,search.scroll_current,pri.search.scroll_current,search.scroll_time,pri.search.scroll_time,search.scroll_total,pri.search.scroll_total,segments.count,pri.segments.count,segments.memory,pri.segments.memory,segments.index_writer_memory,pri.segments.index_writer_memory,segments.version_map_memory,pri.segments.version_map_memory,segments.fixed_bitset_memory,pri.segments.fixed_bitset_memory,warmer.current,pri.warmer.current,warmer.total,pri.warmer.total,warmer.total_time,pri.warmer.total_time,suggest.current,pri.suggest.current,suggest.time,pri.suggest.time,suggest.total,pri.suggest.total,memory.total,pri.memory.total,search.throttled
     index detail info mappings
         GET /<target>/_mapping
     index detail info settings
