@@ -240,6 +240,8 @@ example group
     index list (indices)
         https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-indices.html#cat-indices-api-request
         GET /_cat/indices/_all?v=true&s=index
-    index detail info
-        GET /.apm-agent-configuration/_mapping
+    index detail info mappings
+        GET /<target>/_mapping
+    index detail info settings
+        GET /<target>/_settings
 
