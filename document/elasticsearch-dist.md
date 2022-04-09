@@ -5,6 +5,7 @@
     elasticsearch process = node
     RPM, DEB, TAR 설치 유형 중 TAR형태의 배포형은 압축 해제하여 PORT 설정을 통해 하나의 물리적 환경에 여러 elasticsearch process를 실행 할 수 있다.
     이와 같은 환경으로 설치하게 되면 쉽게 클러스터링이 가능하다는 의미이다.
+    elasticsearch.yml에서 cluster.name 그룹에 node.name 을 다르게 하여 하나의 클러스터로 사용 할 수 있다.
 
 특징
 6.x 버전 이후로는 하나의 인덱스에 하나의 타입만 가질 수 있다.
