@@ -244,4 +244,5 @@ example group
         GET /<target>/_mapping
     index detail info settings
         GET /<target>/_settings
-
+    Delete index API
+        DELETE /my-index-000001

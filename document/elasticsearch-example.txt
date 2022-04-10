@@ -47,6 +47,8 @@ PUT my-index-000001
 {
     "settings":
     {
+        "number_of_shards": 8,
+        "number_of_replicas": 1,
         "analysis":
         {
             "analyzer":
