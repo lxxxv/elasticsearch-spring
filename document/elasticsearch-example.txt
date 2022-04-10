@@ -88,17 +88,20 @@ PUT my-index-000001
     },
     "mappings":
     {
-        "properties":
+        "_doc":
         {
-            "body":
+            "properties":
             {
-                "type":"text",
-                "analyzer": "my_custom_analyzer"
-            },
-            "body_keyword":
-            {
-                "type":"keyword",
-                "normalizer": "norm_low"
+                "body":
+                {
+                    "type":"text",
+                    "analyzer": "my_custom_analyzer"
+                },
+                "body_keyword":
+                {
+                    "type":"keyword",
+                    "normalizer": "norm_low"
+                }
             }
         }
     }
