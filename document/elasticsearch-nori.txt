@@ -119,3 +119,228 @@ NA, UNA, Unknown, VSV : 알수없는 [unknown]
     SSC 닫는 괄호 [Closing brackets]
     SSO : 여는 괄호 [Opening brackets]
     SY : 기타 기호 [Other symbol]
+
+노리 플러그인 설치
+    # elasticsearch-plugin install analysis-nori
+노리 플러그인 제거
+    # elasticsearch-plugin remove analysis-nori
+
+
+standard tokenizer
+    요청
+    GET _analyze
+    {
+        "tokenizer": "standard",
+        "text": ["동해물과 백두산이"],
+        "explain": true
+    }
+    결과
+    {
+        "tokens" :
+        [
+            {
+                "token" : "동해물과",
+                "start_offset" : 0,
+                "end_offset" : 4,
+                "type" : "<HANGUL>",
+                "position" : 0
+            },
+            {
+                "token" : "백두산이",
+                "start_offset" : 5,
+                "end_offset" : 9,
+                "type" : "<HANGUL>",
+                "position" : 1
+            }
+        ]
+    }
+
+nori tokenizer
+    요청
+    GET _analyze
+    {
+        "tokenizer": "nori_tokenizer",
+        "text": ["동해물과 백두산이"]
+    }
+    결과
+    {
+        "tokens" :
+        [
+            {
+                "token" : "동해",
+                "start_offset" : 0,
+                "end_offset" : 2,
+                "type" : "word",
+                "position" : 0
+            },
+            {
+                "token" : "물",
+                "start_offset" : 2,
+                "end_offset" : 3,
+                "type" : "word",
+                "position" : 1
+            },
+            {
+                "token" : "과",
+                "start_offset" : 3,
+                "end_offset" : 4,
+                "type" : "word",
+                "position" : 2
+            },
+            {
+                "token" : "백두",
+                "start_offset" : 5,
+                "end_offset" : 7,
+                "type" : "word",
+                "position" : 3
+            },
+            {
+                "token" : "산",
+                "start_offset" : 7,
+                "end_offset" : 8,
+                "type" : "word",
+                "position" : 4
+            },
+            {
+                "token" : "이",
+                "start_offset" : 8,
+                "end_offset" : 9,
+                "type" : "word",
+                "position" : 5
+            }
+        ]
+    }
+
+옵션
+    요청
+    PUT my_nori
+    {
+        "settings":
+        {
+            "analysis":
+            {
+                "tokenizer":
+                {
+                    "nori_none":
+                    {
+                        "type": "nori_tokenizer",
+                        "decompound_mode": "none"
+                    },
+                    "nori_discard":
+                    {
+                        "type": "nori_tokenizer",
+                        "decompound_mode": "discard"
+                    },
+                    "nori_mixed":
+                    {
+                        "type": "nori_tokenizer",
+                        "decompound_mode": "mixed"
+                    }
+                }
+            }
+        }
+    }
+    결과
+    GET  /my_nori/_analyze
+    {
+        "tokenizer" : "nori_mixed",
+        "text" : "동해물과 백두산이",
+        "explain" : true
+    }
+
+
+"text": [ "백두산이" ]
+    nori_none
+    {
+        "tokens" :
+        [
+            {
+                "token" : "백두산",
+                "start_offset" : 0,
+                "end_offset" : 3,
+                "type" : "word",
+                "position" : 0
+            },
+            {
+                "token" : "이",
+                "start_offset" : 3,
+                "end_offset" : 4,
+                "type" : "word",
+                "position" : 1
+            }
+        ]
+    }
+
+    nori_discard
+    {
+        "tokens" :
+        [
+            {
+                "token" : "백두",
+                "start_offset" : 0,
+                "end_offset" : 2,
+                "type" : "word",
+                "position" : 0
+            },
+            {
+                "token" : "산",
+                "start_offset" : 2,
+                "end_offset" : 3,
+                "type" : "word",
+                "position" : 1
+            },
+            {
+                "token" : "이",
+                "start_offset" : 3,
+                "end_offset" : 4,
+                "type" : "word",
+                "position" : 2
+            }
+        ]
+    }
+
+    nori_mixed
+    {
+        "tokens" :
+        [
+            {
+                "token" : "백두산",
+                "start_offset" : 0,
+                "end_offset" : 3,
+                "type" : "word",
+                "position" : 0,
+                "positionLength" : 2
+            },
+            {
+                "token" : "백두",
+                "start_offset" : 0,
+                "end_offset" : 2,
+                "type" : "word",
+                "position" : 0
+            },
+            {
+                "token" : "산",
+                "start_offset" : 2,
+                "end_offset" : 3,
+                "type" : "word",
+                "position" : 1
+            },
+            {
+                "token" : "이",
+                "start_offset" : 3,
+                "end_offset" : 4,
+                "type" : "word",
+                "position" : 2
+            }
+        ]
+    }
+
+
+
+Analyzer API
+    GET  /_analyze
+    POST /_analyze
+    GET  /<index>/_analyze
+    POST /<index>/_analyze
+
+
