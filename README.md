@@ -284,15 +284,7 @@ REST APIs
         `-- Delete dangling index
             `-- DELETE /_dangling/<index-uuid>?accept_data_loss=true
 
+```
 
 sc create "elasticsearch-kibana-service-x64" binPath="D:\install\engine\elk\kibana\7.17.2\bin\kibana.bat" displayname="Elasticsearch Kibana 7.17.2 (elasticsearch-kibana-service-x64)"
-
-
-
-
-
-
-
-
-```
 
