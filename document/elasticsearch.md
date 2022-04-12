@@ -1,4 +1,4 @@
-
+```
 Configuring
 https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html
 
@@ -246,3 +246,6 @@ example group
         GET /<target>/_settings
     Delete index API
         DELETE /my-index-000001
+
+
+```

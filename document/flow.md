@@ -1,3 +1,4 @@
+```
 
 1. elk download
 env : windows
@@ -34,3 +35,5 @@ https://esbook.kimjmin.net/06-text-analysis/6.7-stemming/6.7.2-nori
 
 
 GET /index(tablename)/_mapping
+
+```

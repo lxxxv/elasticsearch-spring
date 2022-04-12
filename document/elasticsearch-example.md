@@ -1,4 +1,4 @@
-
+```
 create index : https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html
 ["aliases", "mappings", "settings"]
 
@@ -113,3 +113,5 @@ PUT my-index-000001
 
 clone index
 POST /my-index-000001/_clone/cloned-my-index-000001
+
+```
