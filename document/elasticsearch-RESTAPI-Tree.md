@@ -1,5 +1,21 @@
 ```
+
 REST APIs
+|-- Data stream APIs
+|   |-- Create data stream
+|   |   `-- PUT /_data_stream/<data-stream>
+|   |-- Delete data stream
+|   |   `-- DELETE /_data_stream/<data-stream>
+|   |-- Get data stream
+|   |   `-- GET /_data_stream/<data-stream>
+|   |-- Migrate to data stream
+|   |   `-- POST /_data_stream/_migrate/<alias>
+|   |-- Data stream stats
+|   |   `-- GET /_data_stream/<data-stream>/_stats
+|   |-- Promote data stream
+|   |   `-- POST /_data_stream/_promote/<data-stream>
+|   `-- Modify data streams
+|       `-- POST /_data_stream/_modify
 |-- Document APIs
 |   |-- Reading and Writing documents
 |   |-- Index
@@ -259,4 +275,5 @@ REST APIs
         |   `-- POST /_dangling/<index-uuid>?accept_data_loss=true
         `-- Delete dangling index
             `-- DELETE /_dangling/<index-uuid>?accept_data_loss=true
+
 ```
