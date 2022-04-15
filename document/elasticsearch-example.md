@@ -42,7 +42,7 @@ settings.analysis.analyzer : https://www.elastic.co/guide/en/elasticsearch/refer
         settings.analysis.analyzer.{my_custom_analyzer}.filter : https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenfilters.html
         ["apostrophe", "asciifolding", "cjk_bigram", "cjk_width", "classic", "common_grams", "condition", "decimal_digit", "delimited_payload", "dictionary_decompounder", "edge_ngram", "elision", "fingerprint", "synonym_graph", "hunspell", "hyphenation_decompounder", "keep_types", "keep", "stemmer", "keyword_repeat", "kstem", "length", "limit", "lowercase", "min_hash", "multiplexer", "ngram", "pattern_capture", "pattern_replace", "analysis-phonetic", "porter_stem", "predicate_token_filter", "keyword_repeat", "reverse", "shingle", "snowball", "stemmer", "stemmer_override", "stop", "synonym", "synonym_graph", "trim", "truncate", "unique", "uppercase", "word_delimiter", "word_delimiter_graph", "my_custom_filter_name"]
 
-
+01.
 PUT my-index-000001
 {
     "settings":
@@ -107,6 +107,62 @@ PUT my-index-000001
             }
         }
     }
+}
+
+02.
+PUT lxxxv-index-01
+{
+  "settings":
+  {
+    "number_of_shards": 5,
+    "number_of_replicas": 1,
+    "analysis":
+    {
+      "analyzer":
+      {
+        "my_custom_analyzer":
+        {
+          "type": "custom",
+          "char_filter": ["html_strip"],
+          "tokenizer": "my_nori_tokenizer_mixed",
+          "filter": ["lowercase"]
+        }
+      },
+      "tokenizer":
+      {
+        "my_nori_tokenizer_mixed":
+        {
+          "type": "nori_tokenizer",
+          "decompound_mode": "mixed"
+        }
+      },
+      "normalizer":
+      {
+        "norm_low":
+        {
+          "type": "custom",
+          "filter": [ "lowercase", "asciifolding" ]
+        }
+      }
+    }
+  },
+  "mappings":
+  {
+    "properties":
+    {
+      "body":
+      {
+        "type":"text",
+        "analyzer": "my_custom_analyzer",
+        "fielddata": true
+      },
+      "body_keyword":
+      {
+        "type":"keyword",
+        "normalizer": "norm_low"
+      }
+    }
+  }
 }
 
 
