@@ -1,4 +1,24 @@
 ```
+
+Analyer 는 크게 Char Filters, Tokenizer, Token Filters 로 나뉩니다.
+'char_filter' 는 0~3개로 구성을 합니다. 
+한 문장이 들어왔을 때 각 문자의 필터 역할을 하며 추가, 삭제, 변경이 할 수 있으며 매핑이나 html 태그 필터, 사용자가 직접 custom 하여 맞춤 char_filter의 기능이 있습니다. 
+
+'tokenizer' 는 정확히 1개로 구성되어야합니다. 
+기능은 'char filter'의 과정을 거치고 나서 문장의 각 단어들을 tokenizer 옵션에 맞게 token 으로 자르는 역할을 합니다. 대표적으로 'standard', 'letter', 'Lowercase', 'whitespace' 등이 있으며 예시로 'standard tokenizer'를 사용한다면 한 문장에서 tokenizer 내에서 사용하는 알고리즘을 통해 단어별로 token이 나눠지게 됩니다.
+gd
+'filter'는 'Token Filter'를 의미합니다. 0개 이상으로 구성을 합니다. 
+'tokenizer' 과정에서 나눠진 각 token 들을 말그대로 filter하는 과정입니다. 토큰의 '동의어'나 'ngram', 'stoptoken 등 많은 filter의 종류가 있으며 토큰들의 추가하거나 삭제, 변경이 가능합니다.
+"analyzer" : {
+   "char_filter": "html_strip",     // html 태그 제거
+   "tokenizer": "whitespace"        // whitespace 기준 토큰 생성
+   "filter": "lowercase"            // 소문자로 필터링
+}
+1. char_filter : "This is test Keyword. Test Keyword right?"  --> 문장에서 태그가 사라집니다.
+2. tokenizer : [This, is, test, Keyword, Test, Keyword, right?]  --> 띄어쓰기 기준으로 자릅니다.
+3. filter : [this, is, test, keyword, test, keyword, right?]   --> Token들이 lowercase 필터됩니다.
+
+
 node
 RPM, DEB, TAR 설치 유형 중 TAR형태의 배포형은 압축 해제하여 PORT 설정을 통해 하나의 물리적 환경에 여러 elasticsearch process를 실행 할 수 있다.
 이와 같은 환경으로 설치하게 되면 쉽게 클러스터링이 가능하다는 의미이다.
