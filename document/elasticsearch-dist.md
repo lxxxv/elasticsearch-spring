@@ -14,6 +14,9 @@ Analyer 는 크게 Char Filters, Tokenizer, Token Filters 로 나뉩니다.
    "tokenizer": "whitespace"        // whitespace 기준 토큰 생성
    "filter": "lowercase"            // 소문자로 필터링
 }
+1. char_filter : "This is test Keyword. Test Keyword right?"  --> 문장에서 태그가 사라집니다.
+2. tokenizer : [This, is, test, Keyword, Test, Keyword, right?]  --> 띄어쓰기 기준으로 자릅니다.
+3. filter : [this, is, test, keyword, test, keyword, right?]   --> Token들이 lowercase 필터됩니다.
 
 
 node
