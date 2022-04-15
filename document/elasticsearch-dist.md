@@ -6,7 +6,7 @@ Analyer 는 크게 Char Filters, Tokenizer, Token Filters 로 나뉩니다.
 
 'tokenizer' 는 정확히 1개로 구성되어야합니다. 
 기능은 'char filter'의 과정을 거치고 나서 문장의 각 단어들을 tokenizer 옵션에 맞게 token 으로 자르는 역할을 합니다. 대표적으로 'standard', 'letter', 'Lowercase', 'whitespace' 등이 있으며 예시로 'standard tokenizer'를 사용한다면 한 문장에서 tokenizer 내에서 사용하는 알고리즘을 통해 단어별로 token이 나눠지게 됩니다.
-
+gd
 'filter'는 'Token Filter'를 의미합니다. 0개 이상으로 구성을 합니다. 
 'tokenizer' 과정에서 나눠진 각 token 들을 말그대로 filter하는 과정입니다. 토큰의 '동의어'나 'ngram', 'stoptoken 등 많은 filter의 종류가 있으며 토큰들의 추가하거나 삭제, 변경이 가능합니다.
 "analyzer" : {
