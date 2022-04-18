@@ -18,7 +18,11 @@ repositories {
 	mavenCentral()
 }
 
+def esVersion = "7.17.2"
+
 dependencies {
+	implementation "org.elasticsearch:elasticsearch:${esVersion}"
+	implementation "org.elasticsearch.client:elasticsearch-rest-high-level-client:${esVersion}"
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'	// https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
 	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
