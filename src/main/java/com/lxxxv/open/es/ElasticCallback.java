@@ -7,27 +7,34 @@ public class ElasticCallback
 {
     private final String request;
     private final Map<String, Object> response;
+    private final ArrayList<String> ids;
     private final ArrayList<Object> fields;
 
-    public ElasticCallback(String request, Map<String, Object> response, ArrayList<Object> fields)
+    public ElasticCallback(String request, Map<String, Object> response, ArrayList<String> ids, ArrayList<Object> fields)
     {
         this.request = request;
         this.response = response;
+        this.ids = ids;
         this.fields = fields;
     }
 
     public String getRequest()
     {
-        return request;
+        return this.request;
     }
 
     public Map<String, Object> getResponse()
     {
-        return response;
+        return this.response;
     }
 
     public ArrayList<Object> getFields()
     {
-        return fields;
+        return this.fields;
+    }
+
+    public ArrayList<String> getIds()
+    {
+        return this.ids;
     }
 }

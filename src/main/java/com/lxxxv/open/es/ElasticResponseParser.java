@@ -1,5 +1,7 @@
 package com.lxxxv.open.es;
 
+import org.apache.commons.collections.map.ListOrderedMap;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -26,6 +28,7 @@ public class ElasticResponseParser
 
         return fields;
     }
+
 
     private ArrayList<Object> getHits(Map<String, Object> response)
     {
@@ -56,7 +59,7 @@ public class ElasticResponseParser
         return null;
     }
 
-    private Map<String, Object> typeCaseMap(Object data)
+    public Map<String, Object> typeCaseMap(Object data)
     {
         if (this.isMapType(data))
         {
@@ -66,7 +69,7 @@ public class ElasticResponseParser
         return null;
     }
 
-    private ArrayList<Object> typeCaseArrayList(Object data)
+    public ArrayList<Object> typeCaseArrayList(Object data)
     {
         if (this.isArrayListType(data))
         {
