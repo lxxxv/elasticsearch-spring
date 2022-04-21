@@ -57,7 +57,7 @@ REST APIs
 |   |   |-- GET _cluster/allocation/explain
 |   |   `-- POST _cluster/allocation/explain
 |   |-- Cluster get settings
-|   |   `-- GET /_cluster/settings
+|   |   `-- GET /_cluster/settings?flat_settings&include_defaults&pretty
 |   |-- Cluster health
 |   |   `-- GET /_cluster/health/<target>
 |   |-- Cluster reroute
