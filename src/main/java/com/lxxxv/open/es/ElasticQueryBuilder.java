@@ -33,13 +33,11 @@ public class ElasticQueryBuilder {
 
     // indices = "index_fw_20220410-000001"
     // storedFields = "action", "category"
-    // size = if size == -1 : unlimit
+    // size = if size == -1 : unLimit
     public void matchAll(List<String> indices, List<String> storedFields, int size, Consumer<ElasticCallback> caller) {
         assert indices != null;
         assert storedFields != null;
         assert caller != null;
-
-        final Scroll scroll = builderUtils.newScroll(SCROLL_EXPIRE_MILLIS);
 
         SearchSourceBuilder builder = builderUtils.newSearchSourceBuilder();
         builderUtils.putTrackTotalHits(builder);
@@ -47,38 +45,7 @@ public class ElasticQueryBuilder {
         builderUtils.putScrollSize(builder, MAX_SCROLL_SIZE);
         builderUtils.putMatchAllQuery(builder);
 
-        SearchRequest request = builderUtils.newSearchRequest();
-        builderUtils.putIndices(request, indices);
-        request.scroll(scroll);
-        request.source(builder);
-
-        SearchResponse response = this.getSearchResponse(request);
-        assert response != null;
-        String scrollId = response.getScrollId();
-        SearchHit[] searchHits = response.getHits().getHits();
-
-        int idxHits = 0;
-        while (searchHits != null && searchHits.length > 0) {
-            caller.accept(this.responseToObject(request.toString(), response));
-            if (size > 0) {
-                idxHits = idxHits + searchHits.length;
-                if (idxHits >= size) {
-                    break;
-                }
-            }
-            SearchScrollRequest scrollRequest = builderUtils.newSearchScrollRequest(scrollId);
-            scrollRequest.scroll(scroll);
-            response = this.getScrollResponse(scrollRequest);
-            assert response != null;
-            scrollId = response.getScrollId();
-            searchHits = response.getHits().getHits();
-        }
-
-        ClearScrollRequest clearScrollRequest = builderUtils.newClearScrollRequest();
-        clearScrollRequest.addScrollId(scrollId);
-        ClearScrollResponse clearScrollResponse = this.clearScroll(clearScrollRequest);
-        assert clearScrollResponse != null;
-        boolean succeeded = clearScrollResponse.isSucceeded();
+        this.runResponse(builder, indices, size, caller);
     }
 
     // indices = "index_fw_20220410-000001"
@@ -122,18 +89,18 @@ public class ElasticQueryBuilder {
         assert ids != null;
         assert caller != null;
 
-        final Scroll scroll = builderUtils.newScroll(SCROLL_EXPIRE_MILLIS);
-
         SearchSourceBuilder builder = builderUtils.newSearchSourceBuilder();
         builderUtils.putTrackTotalHits(builder);
         builderUtils.putStoredFields(builder, storedFields);
         builderUtils.putScrollSize(builder, MAX_SCROLL_SIZE);
         builderUtils.putFilter(builder, query_string, ids);
 
-        //
-        // ids 대상은 쿼리 만들었으니 다음 서브쿼리를 준비하기 위해 clear 한다.
-        //
-        ids.clear();
+        this.runResponse(builder, indices, size, caller);
+    }
+
+    private void runResponse(SearchSourceBuilder builder, List<String> indices, int size, Consumer<ElasticCallback> caller)
+    {
+        final Scroll scroll = builderUtils.newScroll(SCROLL_EXPIRE_MILLIS);
 
         SearchRequest request = builderUtils.newSearchRequest();
         builderUtils.putIndices(request, indices);

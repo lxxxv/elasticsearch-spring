@@ -3,7 +3,7 @@ package com.lxxxv.open.es;
 import org.elasticsearch.action.search.ClearScrollRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchScrollRequest;
-import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.core.TimeValue;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.QueryStringQueryBuilder;
@@ -25,6 +25,11 @@ public class ElasticQueryBuilderUtils {
         {
             boolQueryBuilder.filter(QueryBuilders.termsQuery("_id", ids));
         }
+
+        //
+        // ids 대상은 쿼리 만들었으니 다음 서브쿼리를 준비하기 위해 clear 한다.
+        //
+        ids.clear();
 
 //        for(String id : ids)
 //        {
